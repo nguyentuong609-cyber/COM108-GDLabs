@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <math.h>
 
-float kiemTraDiem(float x){
-    if (x >= 9) printf("Hoc luc xuat sac\n");
+void kiemTraDiem(float x){
+    if(x > 10) printf("Khong hop le\n");
+    else if (x >= 9) printf("Hoc luc xuat sac\n");
     else if (x >= 8) printf("Hoc luc gioi\n");
     else if (x >= 6.5)printf("Hoc luc kha\n");
     else if (x >= 5)printf("Hoc luc trung binh\n");
     else if (x >= 3.5) printf("Hoc luc yeu\n");
-    else printf("Hoc luc kem\n");
-
-    return 0;
+    else if (x >= 0) printf("Hoc luc kem\n");
+    else printf("Khong hop le\n");
 }
 
-float phuongTrinh_2_1(float a, float b){
+void phuongTrinh_2_1(float a, float b){
     if (a == 0){
         if(b == 0) printf("Phuong Trinh co vo so nghiem");
         else printf("Phuong trinh vo nghiem");
@@ -23,7 +23,7 @@ float phuongTrinh_2_1(float a, float b){
         printf("x la: %.2f\n",x);}
 }
 
-float phuongTrinh_2_2(float a, float b, float c){
+void phuongTrinh_2_2(float a, float b, float c){
     if(a == 0){
         float x = -c / b;
         printf("Phuong trinh thanh bx + c = 0\n");
@@ -38,6 +38,34 @@ float phuongTrinh_2_2(float a, float b, float c){
             float x2 = (-b - sqrt(delta)) / (2 * a);
             printf("Phuong trinh co 2 nghiem rieng biet\nx1 la: %.2f va x2 la: %.2f\n", x1, x2);
         }
+    }
+}
+
+void tinhTienDien(float so_kWh_suDung){
+    float totalCost;
+    if(so_kWh_suDung <= 50){
+        totalCost = so_kWh_suDung * 1.678;
+        printf("Ban can phai dong: %.2f\n", totalCost);
+    }
+    else if (so_kWh_suDung <= 100){
+        totalCost = so_kWh_suDung * 1.734;
+        printf("Ban can phai dong: %.2f\n", totalCost);
+    }
+    else if (so_kWh_suDung <= 200){
+        totalCost = so_kWh_suDung * 2.014;
+        printf("Ban can phai dong: %.2f()\n", totalCost);
+    }
+    else if (so_kWh_suDung <= 300){
+        totalCost = so_kWh_suDung * 2.536;
+        printf("Ban can phai dong: %.2f\n", totalCost);
+    }
+    else if (so_kWh_suDung <= 400){
+        totalCost = so_kWh_suDung * 2.834;
+        printf("Ban can phai dong: %.2f\n", totalCost);
+    }
+    else{
+        totalCost = so_kWh_suDung * 2.937;
+        printf("Ban can phai dong: %.2f\n", totalCost);
     }
 }
 
@@ -85,10 +113,13 @@ int main(){
                 printf("Nhap so c: "); scanf("%f", &c);
 
                 phuongTrinh_2_2(a,b,c);
-
                 break;
             }
             case 4:{
+                printf("Ban da chon CN4: ting tien dien\n");
+                float x;
+                printf("Nhap so kWh da su dung: "); scanf("%f", &x);
+                tinhTienDien(x);
                 break;
             }
             case 0:{
@@ -96,7 +127,7 @@ int main(){
                 break;
             }
             default:{
-                printf("Phien cho so tu 1 toi 4");
+                printf("Phien cho so tu 0 toi 4");
                 break;
             }
 
