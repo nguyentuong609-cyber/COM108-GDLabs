@@ -51,7 +51,7 @@ int main(){
     fgets(mssv, sizeof(mssv), stdin);
 
     for (i = 0; i < n; i++){
-        if(mssv == mangSV[i].mssv){}
+        if(strcmp(mssv, mangSV[i].mssv) == 0)
         printStudentInfo(mangSV[i]);
     }
     
@@ -82,3 +82,4 @@ void printStudentInfo(SinhVien student){
     printf("Nganh hoc: %s\n", student.nganhHoc);
     printf("Diem TB: %.2f\n", student.diemTB);
 }
+
