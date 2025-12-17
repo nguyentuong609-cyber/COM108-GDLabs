@@ -8,6 +8,8 @@ typedef struct {
     int diemTB;
 }SinhVien;
 
+void menu();
+
 void ASM1();
 
 void array_Input(int array[], int size);
@@ -20,37 +22,81 @@ void studentInput(SinhVien *student);
 
 void studentOutput(SinhVien student);
 
-void studentSorting(SinhVien studentArray[], int size);
+void studentSortingDecending(SinhVien studentArray[], int size);
+
+void studentSortingAcsending(SinhVien studentArray[], int size);
 
 int main(){
+    int choice;
+    do{
+        menu();
+        if(scanf("%d", &choice) != 1){
+            printf("Invalid please reenter.");
+            while(getchar() != '\n');
+            continue;
+        }
+
+        while(getchar() != '\n');
+
+        switch (choice){
+            case 1:{
+                printf("You have chosen 1\n");
+                ASM1();
+                break;
+            }
+            case 2:{
+                int size;
+                printf("Enter the size of your array: ");
+                scanf("%d", &size); getchar();
+                int Array[size];
+                array_Input(Array, size);
+                array_Output(Array, size);
+                even_array_Output(Array, size);
+                break;
+            }
+            case 3:{
+                int size = 3;
+                SinhVien studentArray[size];
+
+                for(int i = 0; i < size; i++){
+                studentInput(&studentArray[i]);
+                }
     
-    // int size;
-    // printf("Enter the size of your array: ");
-    // scanf("%d", &size); getchar();
-    // int Array[size];
-    // array_Input(Array, size);
-    // array_Output(Array, size);
-    // even_array_Output(Array, size);
+                for(int i = 0; i < size; i++){
+                    studentOutput(studentArray[i]);
+                }
 
-    int size = 3;
-    SinhVien studentArray[size];
+                printf("\n------\n");
+                printf("Sorting descending.\n");
+                for(int i = 0; i < size; i++){
+                    studentSortingDecending(studentArray, size);
+                }
+                for(int i = 0; i < size; i++){
+                    studentOutput(studentArray[i]);
+                }
 
-    for(int i = 0; i < size; i++){
-        studentInput(&studentArray[i]);
-    }
-    
-    for(int i = 0; i < size; i++){
-        studentOutput(studentArray[i]);
-    }
+                printf("\n-----\n");
+                printf("Sorting ascending.\n");
+                for(int i = 0; i < size; i++){
+                    studentSortingAcsending(studentArray, size);
+                }
 
-    printf("\n------\n");
-    printf("Sorting descending.\n");
-    for(int i = 0; i < size; i++){
-        studentSorting(studentArray, size);
-    }
-    for(int i = 0; i < size; i++){
-        studentOutput(studentArray[i]);
-    }
+                for(int i = 0; i < size; i++){
+                    studentOutput(studentArray[i]);
+                }
+                break;
+            }
+            case 4:{
+                printf("Exit.");
+                break;
+            }
+            default:{
+                printf("Invalid please reenter.");
+                break;
+            }
+
+        }
+    }while(choice != 4);
 
     return 0;
 }
@@ -63,6 +109,7 @@ void menu(){
     printf("2. ASM2.\n");
     printf("3. ASM3.\n");
     printf("EXIT.\n");
+    printf("Please choose a function from(1 - 4): ");
 }
 
 void ASM1(){
@@ -126,7 +173,7 @@ void studentOutput(SinhVien student){
     printf("Student's grade: %d\n", student.diemTB);
 }
 
-void studentSorting(SinhVien studentArray[], int size){
+void studentSortingDecending(SinhVien studentArray[], int size){
     int i, j;
     for(i = 0; i < size - 1; i++){
         for(j = i + 1; j < size; j++){
@@ -139,3 +186,15 @@ void studentSorting(SinhVien studentArray[], int size){
     }
 }
 
+void studentSortingAcsending(SinhVien studentArray[], int size){
+    int i, j;
+    for(i = 0; i < size; i++){
+        for(j = i + 1; j < size; j++){
+            if(studentArray[i].diemTB > studentArray[j].diemTB){
+                SinhVien studentTemp = studentArray[i];
+                studentArray[i] = studentArray[j];
+                studentArray[j] = studentTemp;
+            }
+        }
+    }
+}
