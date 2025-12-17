@@ -29,6 +29,7 @@ int main(){
             while(getchar() != '\n');
             continue;
         }
+        while(getchar() != '\n');
 
         switch(choice){
             case 1:{
@@ -197,4 +198,5 @@ void sortArray(int array[], int size){
             }
         }
     }
+
 }
